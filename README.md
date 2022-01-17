@@ -1,2 +1,0 @@
-# leetcodesolution
-leetcode solutions

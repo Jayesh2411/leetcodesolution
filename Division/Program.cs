@@ -1,6 +1,6 @@
-using System;
+﻿using System;
 public class Solution {
-    public int Divide(int dividend, int divisor) {
+    static public int Divide(int dividend, int divisor) {
         int ans = 0;
         bool numpos, denpos;
         numpos=false;
@@ -34,5 +34,4 @@ public class Solution {
         int divisor=3;
         Console.WriteLine(Divide(dividend,divisor));
     }
-
 }

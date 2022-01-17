@@ -2,12 +2,19 @@ package main
 
 import "fmt"
 
+// @author Jayesh
+/*
+29. Divide Two Integers
+Medium
+
+Given two integers dividend and divisor, divide two integers without using multiplication, division, and mod operator.
+*/
+
 func main() {
 	res := divide(-21474836482, -3)
 	fmt.Println(res)
 }
 
-// @author Jayesh
 func divide(dividend int, divisor int) int {
 	dividendSign := 1
 	divisorSign := 1

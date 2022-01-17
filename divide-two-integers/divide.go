@@ -24,9 +24,6 @@ func divide(dividend int, divisor int) int {
 	if dividend == -2147483648 && divisor == -2147483648 {
 		return 1
 	}
-	if dividend == 0 {
-		return 0
-	}
 
 	dividend = dividend * dividendSign //make both numbers positive for simplicity
 	divisor = divisor * divisorSign

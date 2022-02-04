@@ -15,14 +15,26 @@
  */
 class Solution {
     List<Integer> list = new LinkedList<Integer>();
+    Stack<TreeNode> stack = new Stack<TreeNode>();
     public List<Integer> inorderTraversal(TreeNode root) {
         if (root == null) {
             return list;
         }
-        
-        inorderTraversal(root.left);
-        list.add(root.val);
-        inorderTraversal(root.right);
+        TreeNode current = root;
+        while (current != null || !stack.isEmpty()) {
+            
+            while(current != null) {
+                stack.push(current);
+                current = current.left;
+            }
+            if (current == null && stack.isEmpty()) {
+                break;
+            } 
+            current = stack.pop();
+            list.add(current.val);
+            current=current.right;
+                
+        }
         return list;
     }
 }

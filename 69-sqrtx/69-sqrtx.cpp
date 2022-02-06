@@ -8,7 +8,7 @@ public:
         while(low<=high)
         {
             mid = (low+high)/2;
-            temp=(trunc(x/mid));
+            temp=trunc(x/mid);
             if(temp==mid)
                return mid;
             else if(temp>mid) {

@@ -8,10 +8,9 @@ public:
         while(low<=high)
         {
             mid = (low+high)/2;
-            temp=trunc(x/mid);
-            if(temp==mid)
+            if((trunc(x/mid))==mid)
                return mid;
-            else if(temp>mid) {
+            else if((trunc(x/mid))>mid) {
                 low=mid+1;
                 ans=mid;
             }

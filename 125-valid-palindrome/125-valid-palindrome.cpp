@@ -1,12 +1,31 @@
 class Solution {
 public:
-    bool isPalindrome(string s) {
-    for (int i = 0, j = s.size() - 1; i < j; i++, j--) { // Move 2 pointers from each end until they collide
-        while (isalnum(s[i]) == false && i < j) i++; // Increment left pointer if not alphanumeric
-        while (isalnum(s[j]) == false && i < j) j--; // Decrement right pointer if no alphanumeric
-        if (toupper(s[i]) != toupper(s[j])) return false; // Exit and return error if not match
-    }
+    bool isAlphaNum(char c)
+{
+    if( (48<=c && c<=57) || (65<=c && c<=90) || (97<=c && c<=122)) 
+        return true;
+    return false;
+}
     
-    return true;
+char lowerCase(char c)
+{
+    if(65<=c && c<=90)
+        return c+32;
+    else 
+        return c;
+}
+    
+bool isPalindrome(string s) 
+{
+    string input;
+    for(char c:s)
+    {
+        if(isAlphaNum(c))
+            input+= lowerCase(c);
+    }
+    string reversed=input;
+    reverse(reversed.begin(),reversed.end());
+    if(input==reversed) return true;
+    else return false;
 }
 };

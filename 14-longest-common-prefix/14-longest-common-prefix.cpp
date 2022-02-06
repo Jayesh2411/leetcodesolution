@@ -5,11 +5,14 @@ public:
         size = strs.size();
         if(size==0)
             return "";
+        string wordBeg, wordEnd;
         sort(begin(strs),end(strs));
-        if(strs[0]=="")
-            return strs[0];
-        while(i<strs[0].length() && strs[0][i]==strs[size-1][i])
+        wordBeg = strs[0];
+        wordEnd=strs[size-1];
+        if(wordBeg=="")
+            return wordBeg;
+        while(i<wordBeg.length() && wordBeg[i]==wordEnd[i])
             ++i;
-        return strs[0].substr(0,i);
+        return wordBeg.substr(0,i);
     }
 };

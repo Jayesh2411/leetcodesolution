@@ -3,35 +3,24 @@ class Solution {
         int cols = s.length();
 
         String zigZag[][] = new String[numRows][cols];
-        int k =0;
-        for (int i =0;i<cols;i++) {
-            int j =0;
+        int k = 0;
+        for (int i = 0; i < cols; i++) {
 
-            for (;j<numRows;j++) {
-                if (k>= s.length()) {
-                    break;
-                }
+            for (int j = 0; j < numRows && k < s.length(); j++) {   //fills the r
                 zigZag[j][i] = String.valueOf(s.charAt(k++));
             }
-            if (j == numRows) {
 
-                int gap = j-2;
-                j-=1;
-                for (int a=1;a<=gap;a++) {
-                    if (k>= s.length()) {
-                        break;
-                    }
-                    zigZag[j-a][++i] = String.valueOf(s.charAt(k++));
-                }
+            int gap = numRows - 2;
+            int j = numRows - 1;
 
+            for (int a = 1; a <= gap && k < s.length(); a++) {
+                zigZag[j - a][++i] = String.valueOf(s.charAt(k++));
             }
         }
 
-
-
         String newStr = "";
-        for (int i = 0;i<numRows;i++) {
-            for (int j = 0;j<cols;j++) {
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < cols; j++) {
                 if (zigZag[i][j] != null)
                     newStr += zigZag[i][j];
             }

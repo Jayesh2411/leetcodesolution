@@ -21,10 +21,17 @@ class Solution {
         }
 
         String newStr = "";
+        k = 0;
         for (int i = 0; i < numRows; i++) {
+            if (k >= s.length()) {
+                break;
+            }
             for (int j = 0; j < cols; j++) {
-                if (zigZag[i][j] != null)
-                    newStr += zigZag[i][j];
+                if (zigZag[i][j] != null) {
+                   newStr += zigZag[i][j];
+                    k++;
+                }
+                    
             }
         }
         return newStr;

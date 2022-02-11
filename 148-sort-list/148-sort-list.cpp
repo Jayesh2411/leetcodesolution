@@ -21,24 +21,21 @@ public:
 
     ListNode* merge(ListNode* list1, ListNode* list2) {
         
-        ListNode* ptr=new ListNode();
-        ListNode* temp=new ListNode();
-        temp=ptr;
-        while (list1 && list2) {
+        ListNode* result;
+        if(list1==NULL)
+            return list2;
+        if(list2==NULL)
+            return list1;
             if (list1->val < list2->val) {
-                ptr->next = list1;
-                list1 = list1->next;
+                result = list1;
+                result->next=merge(list1->next,list2);
             } else {
-                ptr->next = list2;
-                list2 = list2->next;
+                result=list2;
+                result->next= merge(list1,list2->next);
             }
-            ptr = ptr->next;
-        }
-        if(list1) ptr->next = list1;
-        else ptr->next = list2;
 
-        ptr=temp;
-        return ptr->next;
+
+        return result;
     }
 
     ListNode* getMid(ListNode* head) {

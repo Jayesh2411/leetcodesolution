@@ -26,12 +26,12 @@ class Solution {
             slow = slow.next;
             if (fast.next == null) {
                 head = slow;
-                return head;
+                break;
             }
             if (fast.next.next == null) {
                 slow = slow.next;
                 head = slow;
-                return head;
+                break;
             }
         }
         

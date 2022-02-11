@@ -13,8 +13,8 @@ class Solution {
 public:
     bool isValidBST(TreeNode* root) {
         return isValidBST(root,
-            std::numeric_limits<long>::min(),
-            std::numeric_limits<long>::max());
+            LONG_MIN,
+            LONG_MAX);
     }
     
 private:

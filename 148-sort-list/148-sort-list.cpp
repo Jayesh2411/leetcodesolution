@@ -20,22 +20,22 @@ public:
     }
 
     ListNode* merge(ListNode* list1, ListNode* list2) {
-        
-        ListNode* result;
-        if(list1==NULL)
-            return list2;
-        if(list2==NULL)
-            return list1;
+        ListNode dummyHead(0);
+        ListNode* ptr = &dummyHead;
+        while (list1 && list2) {
             if (list1->val < list2->val) {
-                result = list1;
-                result->next=merge(list1->next,list2);
+                ptr->next = list1;
+                list1 = list1->next;
             } else {
-                result=list2;
-                result->next= merge(list1,list2->next);
+                ptr->next = list2;
+                list2 = list2->next;
             }
+            ptr = ptr->next;
+        }
+        if(list1) ptr->next = list1;
+        else ptr->next = list2;
 
-
-        return result;
+        return dummyHead.next;
     }
 
     ListNode* getMid(ListNode* head) {

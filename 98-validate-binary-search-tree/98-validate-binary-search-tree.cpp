@@ -12,37 +12,21 @@
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
-        bool left,right;
-        left = true;
-        right = true;
-        if(root->left!=NULL)
-        {
-            if(maxDepth(root->left)>=root->val)
-                return false;
-            left= isValidBST(root->left);
-        }
-        if(root->right)
-        {
-            if(minDepth(root->right)<=root->val)
-                return false;
-            right = isValidBST(root->right);
-        }
-        return left&right;
+        return isValidBST(root,
+            std::numeric_limits<long>::min(),
+            std::numeric_limits<long>::max());
     }
-    int maxDepth(TreeNode* root)
-    {
-        if(root->right!=NULL)
-            return max(maxDepth(root->right),root->val);
-        if(root->left!=NULL)
-            return max(maxDepth(root->left),root->val);
-        return root->val;
-    }
-    int minDepth(TreeNode* root)
-    {
-        if(root->left!=NULL)
-            return min(minDepth(root->left),root->val);
-        if(root->right!=NULL)
-            return min(minDepth(root->right),root->val);
-        return root->val;
+    
+private:
+    bool isValidBST(TreeNode* node, long min_val, long max_val) {
+        
+        if (nullptr == node)
+            return true;
+        
+        const int val = node->val;
+        
+        return ((val > min_val) && (val < max_val)) &&
+            isValidBST(node->left, min_val, val) &&
+            isValidBST(node->right, val, max_val);
     }
 };

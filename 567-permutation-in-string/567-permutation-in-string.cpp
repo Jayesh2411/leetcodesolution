@@ -27,14 +27,11 @@ public:
             }
             while(s2[first]!=s2[last])
             {
-                cout<<s2[first]<<" "<<m[s2[first]]<<" "<<first;
                 m[s2[first]]++;
                 ++first;
             }
             if(first!=last)
                 {
-                cout<<s2[first]<<" "<<m[s2[first]]<<" "<<first;
-                
                 ++first;
             ++last;}
             ++i;

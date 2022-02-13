@@ -13,7 +13,7 @@ public:
         first=0;
         last=0;
         i=0;
-        while(i < s2.length())
+        while(i < s2.length()&&(first+s1.length()<=s2.length()))
         {
             while(m[s2[i]]!=0 && i < s2.length())
             {

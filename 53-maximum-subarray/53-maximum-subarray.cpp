@@ -11,9 +11,9 @@ public:
                 sum = 0;
             if(sum > maxSum && sum!= 0)
                 maxSum = sum;
-            if(i > maxNum)
-                    maxNum = i;
+            if(i > maxSum)
+                    maxSum = i;
         }
-        return max(maxSum,maxNum);
+        return maxSum;
     }
 };

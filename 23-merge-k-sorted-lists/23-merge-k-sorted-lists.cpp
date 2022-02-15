@@ -29,7 +29,6 @@ public:
             Node=Node->next;
             minHeap.pop();
         }
-        Node=NULL;
         return newMerge->next;
     }
 };

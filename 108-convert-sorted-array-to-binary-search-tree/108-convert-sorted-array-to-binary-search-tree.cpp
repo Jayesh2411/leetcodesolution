@@ -11,19 +11,19 @@
  * };
  */
 class Solution {
-    TreeNode* createTree(vector<int>& nums,int start, int end)
+    TreeNode* sortedArrayToBST(vector<int>& nums,int start, int end)
     {
         if( start >= end )
             return NULL;
         int mid = start + (end - start)/2;
         TreeNode* root = new TreeNode(nums[mid]);
-        root->left = createTree(nums,start,mid);
-        root->right = createTree(nums,mid+1,end);
+        root->left = sortedArrayToBST(nums,start,mid);
+        root->right = sortedArrayToBST(nums,mid+1,end);
         return root;
     }
 public:
     TreeNode* sortedArrayToBST(vector<int>& nums) {
-        return createTree(nums,0,nums.size());
+        return sortedArrayToBST(nums,0,nums.size());
     }
     
 };

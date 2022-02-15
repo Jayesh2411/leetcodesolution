@@ -1,5 +1,4 @@
 
-
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -12,21 +11,19 @@
  * };
  */
 class Solution {
-    TreeNode* createTree(vector<int> nums,int start, int end)
+    TreeNode* createTree(vector<int>& nums,int start, int end)
     {
-        if( start > end )
-            return nullptr;
+        if( start >= end )
+            return NULL;
         int mid = start + (end - start)/2;
         TreeNode* root = new TreeNode(nums[mid]);
-        if(start == end)
-            return root; 
-        root->left = createTree(nums,start,mid-1);
+        root->left = createTree(nums,start,mid);
         root->right = createTree(nums,mid+1,end);
         return root;
     }
 public:
     TreeNode* sortedArrayToBST(vector<int>& nums) {
-        return createTree(nums,0,nums.size()-1);
+        return createTree(nums,0,nums.size());
     }
     
 };

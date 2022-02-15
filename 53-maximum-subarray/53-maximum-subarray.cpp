@@ -9,14 +9,11 @@ public:
                 sum = sum + i;
             else
                 sum = 0;
-            if(sum > maxSum)
+            if(sum > maxSum && sum!= 0)
                 maxSum = sum;
             if(i > maxNum)
                     maxNum = i;
         }
-        if(maxNum < 0)
-            return maxNum;
-        else
-            return maxSum;
+        return max(maxSum,maxNum);
     }
 };

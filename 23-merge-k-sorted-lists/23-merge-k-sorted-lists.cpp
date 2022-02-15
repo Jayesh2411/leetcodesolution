@@ -8,7 +8,7 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-typedef int pi;
+typedef pair<int,ListNode*> pi;
 class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
@@ -17,7 +17,7 @@ public:
         {
             while(i)
             {
-                minHeap.push({i->val});
+                minHeap.push({i->val,i});
                 i=i->next;
             }
         }
@@ -25,11 +25,11 @@ public:
         ListNode* Node = newMerge;
         while(!minHeap.empty())
         {
-            ListNode* newNode = new ListNode(minHeap.top());
-            Node->next = newNode;
+            Node->next = minHeap.top().second;
             Node=Node->next;
             minHeap.pop();
         }
+        Node=NULL;
         return newMerge->next;
     }
 };

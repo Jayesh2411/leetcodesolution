@@ -6,26 +6,20 @@ public:
             sum += i;
         if(sum%2!=0)
             return false;
-        bool prev[sum/2+1],curr[sum/2+1];
-        prev[0]=true;
+        bool curr[sum/2+1];
         curr[0]=true;
         for(int j = 1; j <= sum/2; j++)
         {
-           prev[j]=false;
+           curr[j]=false;
         }
         for(int i = 1; i <= nums.size(); i++)
         {
-            for(int j = 1; j <= sum/2; j++)
+            for(int j = sum/2; j >= 1; j--)
             {
                 if(nums[i-1] <= j)
-                    curr[j] = prev[j] || prev[j-nums[i-1]];
-                else
-                    curr[j] = prev[j];
+                    curr[j] = curr[j] || curr[j-nums[i-1]];
             }
-            copy(curr,curr+sum/2,prev);
         }
         return curr[sum/2];
-        
-            
     }
 };

@@ -14,10 +14,30 @@ public:
     bool isSameTree(TreeNode* p, TreeNode* q) {
         if( p == NULL && q == NULL )
             return true;
-        else if ( p == NULL || q == NULL )
-            return false;
-        if( p->val != q->val )
-            return false;
-        return isSameTree( p->left, q->left ) && isSameTree ( p->right, q->right);
+        queue < TreeNode* > qT;
+        qT.push(p);
+        qT.push(q);
+        while(!qT.empty())
+        {
+            TreeNode* pVal = qT.front();
+            qT.pop();
+            TreeNode* qVal = qT.front();
+            qT.pop();
+            if ( pVal == NULL || qVal == NULL )
+                return false;
+            if( pVal->val != qVal->val )
+                return false;
+            if ( pVal->left || qVal->left )
+            {
+                qT.push(pVal->left);
+                qT.push(qVal->left);
+            }
+            if( pVal->right || qVal->right )
+            {
+                qT.push(pVal->right);
+                qT.push(qVal->right);
+            }
+        }
+        return true;
     }
 };

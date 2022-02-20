@@ -11,7 +11,7 @@
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        while(root!=NULL)
+        while(1)
         {
         bool left = false;
         bool right = false;

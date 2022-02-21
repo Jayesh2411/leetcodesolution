@@ -5,7 +5,8 @@ public:
         for(int i = 1; i <= amount; i++)
             dp[i]=INT_MAX-1;
         dp[0] = 0;
-        for(int i = 1; i <= coins.size(); i++)
+        int n = coins.size();
+        for(int i = 1; i <= n; i++)
         {
             for(int j = 1; j <= amount; j++)
             {

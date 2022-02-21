@@ -6,9 +6,12 @@ class Solution {
             return true;
         if(s1.length()<=1)
             return false;
-        string key = s1 + "_" + s2;
-        if(map.find(key)!=map.end())
-            return map[key];
+        string key1 = s1 + "_" + s2;
+        string key2 = s2 + "_" + s1;
+        if(map.find(key1)!=map.end())
+            return map[key1];
+        if(map.find(key2)!=map.end())
+            return map[key2];
         bool solution = false;
         bool cond1,cond2;
         int i = 0;
@@ -21,7 +24,8 @@ class Solution {
             if(solution)
                 break;
         }
-        map.insert({key,solution});
+        map.insert({key1,solution});
+        map.insert({key2,solution});
         return solution;
     }
 public:

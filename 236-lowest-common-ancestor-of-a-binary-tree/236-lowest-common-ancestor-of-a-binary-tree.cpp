@@ -8,13 +8,19 @@
  * };
  */
 class Solution {
+    unordered_map<string,bool> map;
     bool find(TreeNode* root, TreeNode* look)
-    {
+    {   
         if(root==NULL)
             return false;
+        string key = to_string(root->val)+"_"+to_string(look->val);
+        if(map.find(key)!=map.end())
+            return map[key];
         if(root->val == look->val)
-            return true;
-        return find(root->left,look)||find(root->right,look);
+            map.insert({key,true});
+        else
+            map.insert({key,find(root->left,look)||find(root->right,look)});
+        return map[key];
     }
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {

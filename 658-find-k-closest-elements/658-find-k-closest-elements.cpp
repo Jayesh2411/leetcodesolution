@@ -34,8 +34,7 @@ public:
                 ++j;
             --k;
         }
-        vector<int> result(arr.begin()+i+1,arr.begin()+j);
-        return result;
+        return vector<int> (arr.begin()+i+1,arr.begin()+j);
         
     }
 };

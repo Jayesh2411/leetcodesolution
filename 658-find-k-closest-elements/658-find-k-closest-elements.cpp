@@ -20,12 +20,22 @@ class Solution {
     }
 public:
     vector<int> findClosestElements(vector<int>& arr, int k, int x) {
-        int i = findFloor(arr,x);      
-        int n = size(arr), R = i + 1, L = i;
-        cout<<i;
-        while(k--) 
-            if(R >= n || L >= 0 && x - arr[L] <= arr[R] - x) L--;
-            else R++;
-        return vector<int>(begin(arr) + L + 1, begin(arr) + R);
+        int i = findFloor(arr,x);
+        int j = i + 1;
+        while(k)
+        {
+            if(i >= 0 && j < arr.size() )
+            {
+                abs(x-arr[i]) > abs(x-arr[j])?j++:i--;
+            }
+            else if(i >= 0)
+                --i;
+            else
+                ++j;
+            --k;
+        }
+        vector<int> result(arr.begin()+i+1,arr.begin()+j);
+        return result;
+        
     }
 };

@@ -1,37 +1,20 @@
 class Solution {
-    vector<vector<int>> result;
-    void permute(vector<int> nums, vector<int> count, vector<int> local, int level, int n)
-    {
-        if(level==n)
-        {
-            result.push_back(local);
+public:
+    void recursion(vector<int> num, int i, int j, vector<vector<int> > &res) {
+        if (i == j-1) {
+            res.push_back(num);
             return;
         }
-        for(int i = 0 ; i < nums.size() ; i++)
-        {
-            if(count[i]>0)
-            {
-                count[i]--;
-                local[level] = nums[i];
-                permute(nums,count,local,level+1,n);
-                count[i]++;
-            }
+        for (int k = i; k < j; k++) {
+            if (i != k && num[i] == num[k]) continue;
+            swap(num[i], num[k]);
+            recursion(num, i+1, j, res);
         }
     }
-public:
-    vector<vector<int>> permuteUnique(vector<int>& nums) {
-        vector<int> local(nums.size(),0);
-        map<int,int> m;
-        for(int i : nums)
-            m[i]++;
-        vector<int> count;
-        vector<int> num;
-        for(auto i : m)
-        {
-            num.push_back(i.first);
-            count.push_back(i.second);
-        }
-        permute(num,count,local,0, nums.size());
-        return result;
+    vector<vector<int> > permuteUnique(vector<int> &num) {
+        sort(num.begin(), num.end());
+        vector<vector<int> >res;
+        recursion(num, 0, num.size(), res);
+        return res;
     }
 };

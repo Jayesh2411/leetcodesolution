@@ -19,7 +19,7 @@ class Solution {
         combine(nums,start+1,k);
         nums.erase(nums.begin()+start);
         if(nums.size() >= k)
-            combine(nums,start,k);
+        combine(nums,start,k);
     }
 public:
     vector<vector<int>> combine(int n, int k) {

@@ -14,7 +14,7 @@ class Solution {
             result.push_back(nums);
             return;
         }
-        if(start == nums.size())
+        if(start == nums.size() || nums.size() < k )
             return;
         combine(nums,start+1,k);
         nums.erase(nums.begin()+start);

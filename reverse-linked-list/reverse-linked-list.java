@@ -9,19 +9,16 @@
  * }
  */
 class Solution {
-    ListNode temp;
     public ListNode reverseList(ListNode head) {
-        if(head==null || head.next == null)
-        return head;
- 
-        //get second node    
-        ListNode second = head.next;
-        //set first's next to be null
+        
+        if (head == null || head.next == null) {
+            return head;
+        }
+        
+        ListNode restNodes = reverseList(head.next);
+        head.next.next = head;
         head.next = null;
-
-        ListNode rest = reverseList(second);
-        second.next = head;
-
-        return rest;
+        // 1 2 3 4 5 ->null
+        return restNodes;
     }
 }

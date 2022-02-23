@@ -14,11 +14,12 @@ class Solution {
             result.push_back(nums);
             return;
         }
-        if(start == nums.size() || nums.size() < k )
+        if(start == nums.size() )
             return;
         combine(nums,start+1,k);
         nums.erase(nums.begin()+start);
-        combine(nums,start,k);
+        if(nums.size() >= k)
+            combine(nums,start,k);
     }
 public:
     vector<vector<int>> combine(int n, int k) {

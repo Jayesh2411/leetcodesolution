@@ -7,10 +7,6 @@ public:
         int size;int res=0;int d;
         while(!q.empty()){
             size=q.size();
-            if (size == 1){
-                q.push({q.front().first,1});
-                q.pop();
-            }
             d= q.back().second-q.front().second+1;
             res=max(res,d);
             while(size--){

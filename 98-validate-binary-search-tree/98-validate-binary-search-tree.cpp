@@ -13,7 +13,7 @@ class Solution {
 public:
     bool isValidBST(TreeNode* root) {
         stack<TreeNode* > store;
-        TreeNode* prev = NULL;
+        long prev = LONG_MIN;
         while( root != NULL || !store.empty() )
         {
             while(root)
@@ -23,9 +23,9 @@ public:
             }
             root = store.top();
             store.pop();
-            if(prev!=NULL && root->val <= prev->val)
+            if(root->val <= prev)
                 return false;
-            prev = root;
+            prev = root->val;
             root=root->right;
         }
         return true;

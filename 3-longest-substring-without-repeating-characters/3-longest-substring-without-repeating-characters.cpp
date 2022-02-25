@@ -7,24 +7,13 @@ public:
         int result = 0;
         for(char c : s)
         {
-            if(m.find(c)==m.end())
-            {
-                m.insert({c,end});
-                cout<<c<<" "<<m[c]<<endl;
-                ++end;
-            }
-            else
-            {
-                int i = start;
-                result = max(result,end-start);
+            if(m.find(c)!=m.end() && m[c] >= start)
                 start = m[c]+1;
-                for(; i <= m[c]; i++)
-                    m.erase(s[i]);
-                m[c]=end;
-                ++end;
-            }
+            m[c]=end;
+            ++end;
+            result = max(result,end-start);
         }
-        return max(result,end-start);
+        return result;
     }
 };
 

@@ -5,14 +5,12 @@ public:
             return false;
         if(s1.length()==0)
             return true;
-        map<char,int> m;
-        int i;
-        for(i=0;i<s1.length();i++)
-            m[s1[i]]++;
+        unordered_map<char,int> m;
+        for(char c : s1)
+            m[c]++;
         int first,last;
         first=0;
         last=0;
-        i=0;
         while(last < s2.length()&&(first+s1.length()<=s2.length()))
         {
             while(m[s2[last]]!=0 && last < s2.length())

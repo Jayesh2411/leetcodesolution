@@ -7,9 +7,7 @@ public:
         while(end < s.length())
         {
             freq[s[end++]-'A']++;
-            
-            for(int i : freq)
-                maxCount = maxCount > i? maxCount : i;
+            maxCount = maxCount > freq[s[end-1]-'A']? maxCount : freq[s[end-1]-'A'];
             while(end-start-maxCount > k)
             {
                 freq[s[start]-'A']--;

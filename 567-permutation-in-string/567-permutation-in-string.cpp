@@ -13,28 +13,23 @@ public:
         first=0;
         last=0;
         i=0;
-        while(i < s2.length()&&(first+s1.length()<=s2.length()))
+        while(last < s2.length()&&(first+s1.length()<=s2.length()))
         {
-            while(m[s2[i]]!=0 && i < s2.length())
+            while(m[s2[last]]!=0 && last < s2.length())
             {
-                if(first==last)
-                    first=i;
-                last=i+1;
+                
+                m[s2[last]]--;
+                ++last;
                 if(last-first==s1.length())
                    return true;
-                m[s2[i]]--;
-                ++i;
             }
             while(s2[first]!=s2[last])
             {
                 m[s2[first]]++;
                 ++first;
             }
-            if(first!=last)
-                {
-                ++first;
-            ++last;}
-            ++i;
+            m[s2[first++]]--;
+            m[s2[last++]]++;
         }
         return false;
     }

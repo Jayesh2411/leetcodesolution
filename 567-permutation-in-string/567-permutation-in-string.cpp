@@ -13,13 +13,15 @@ public:
         last=0;
         while(last < s2.length())
         {
-            while(m[s2[last]]!=0 && last < s2.length())
+            while(m[s2[last]]!=0)
             {
                 
                 m[s2[last]]--;
                 ++last;
                 if(last-first==s1.length())
                    return true;
+                if(last == s2.length())
+                    return false;
             }
             while(s2[first]!=s2[last])
             {

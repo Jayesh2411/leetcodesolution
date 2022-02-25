@@ -11,7 +11,7 @@ public:
         int first,last;
         first=0;
         last=0;
-        while(last < s2.length()&&(first+s1.length()<=s2.length()))
+        while(last < s2.length())
         {
             while(m[s2[last]]!=0 && last < s2.length())
             {

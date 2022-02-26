@@ -1,8 +1,8 @@
 class Solution {
 public:
     int findJudge(int n, vector<vector<int>>& trust) {
-        vector< int > graph;
-        graph.resize( n , 0 );
+        int graph[n];
+        memset(graph,0,sizeof(graph));
         for (int i = 0; i < trust.size(); i++ )
         {
             graph[trust[i][0]-1]--;

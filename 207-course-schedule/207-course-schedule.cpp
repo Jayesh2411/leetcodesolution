@@ -2,14 +2,12 @@ class Solution {
     vector<vector<int>> graph;
     bool findCycle(int node, bool vis[], bool covered[])
     {
-        if(vis[node])
-            return false;
         vis[node]=covered[node]=true;
         for(int v : graph[node] )
         {
             if(covered[v])
                 return true;
-            if(findCycle(v,vis,covered))
+            if(!vis[v]&&findCycle(v,vis,covered))
                 return true;
         }
         covered[node]=false;

@@ -1,30 +1,33 @@
 class Solution {
     vector<vector<int>> graph;
-    bool findCycle(int node, int vis[])
+    bool findCycle(int node, bool vis[], bool covered[])
     {
-        if(vis[node] == 1)
+        if(covered[node])
+            return true;
+        if(vis[node])
             return false;
-        vis[node]+=2;
+        vis[node]=covered[node]=true;
         for(int v : graph[node] )
         {
-            if(vis[v] == 2)
-                return true;
-            if(findCycle(v,vis))
+
+            if(findCycle(v,vis,covered))
                 return true;
         }
-        vis[node]--;
+        covered[node]=false;
         return false;
     }
 public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        int vis[numCourses];
-        memset(vis,0,sizeof(vis));
+        bool vis[numCourses];
+        bool covered[numCourses];
+        memset(vis,false,sizeof(vis));
+        memset(covered,false,sizeof(covered));
         graph.resize(numCourses);
         for(auto it : prerequisites)
             graph[it[0]].push_back(it[1]); 
         for(int i = 0; i < graph.size(); i++)
         {
-            if(vis[i] == 0 && findCycle(i,vis))
+            if(!vis[i] && findCycle(i,vis,covered))
                 return false;
         }
         return true;

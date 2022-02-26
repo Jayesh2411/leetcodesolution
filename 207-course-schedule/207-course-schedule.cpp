@@ -1,6 +1,6 @@
 class Solution {
     vector<vector<int>> graph;
-    bool findCycle(int node, short vis[])
+    bool findCycle(int node, int vis[])
     {
         if(vis[node] == 1)
             return false;
@@ -17,7 +17,7 @@ class Solution {
     }
 public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        short vis[numCourses];
+        int vis[numCourses];
         memset(vis,0,sizeof(vis));
         graph.resize(numCourses);
         for(auto it : prerequisites)

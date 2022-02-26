@@ -1,7 +1,7 @@
 class Solution {
     vector<vector<int>> graph;
     vector<int> result;
-    bool findCycle(int node, int vis[])
+    bool findCycle(int node, short vis[])
     {
         if(vis[node] == 1)
             return false;
@@ -19,7 +19,7 @@ class Solution {
     }
 public:
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
-        int vis[numCourses];
+        short vis[numCourses];
         memset(vis,0,sizeof(vis));
         graph.resize(numCourses);
         for(auto it : prerequisites)

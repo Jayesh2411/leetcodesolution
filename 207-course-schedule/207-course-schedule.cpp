@@ -1,40 +1,33 @@
 class Solution {
+    vector<vector<int>> graph;
+    bool findCycle(int node, short vis[])
+    {
+        if(vis[node] == 1)
+            return false;
+        vis[node]+=2;
+        for(int v : graph[node] )
+        {
+            if(vis[v] == 2)
+                return true;
+            if(findCycle(v,vis))
+                return true;
+        }
+        vis[node]--;
+        return false;
+    }
 public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        graph g = buildGraph(numCourses, prerequisites);
-        vector<bool> todo(numCourses, false), done(numCourses, false);
-        for (int i = 0; i < numCourses; i++) {
-            if (!done[i] && !acyclic(g, todo, done, i)) {
+        short vis[numCourses];
+        memset(vis,0,sizeof(vis));
+        graph.resize(numCourses);
+        for(auto it : prerequisites)
+            graph[it[0]].push_back(it[1]); 
+        for(int i = 0; i < graph.size(); i++)
+        {
+            if(vis[i] == 0 && findCycle(i,vis))
                 return false;
-            }
         }
-        return true;
-    }
-private:
-    typedef vector<vector<int>> graph;
-    
-    graph buildGraph(int numCourses, vector<vector<int>>& prerequisites) {
-        graph g(numCourses);
-        for (auto p : prerequisites) {
-            g[p[0]].push_back(p[1]);
-        }
-        return g;
-    }
-    
-    bool acyclic(graph& g, vector<bool>& todo, vector<bool>& done, int node) {
-        if (todo[node]) {
-            return false;
-        }
-        if (done[node]) {
-            return true;
-        }
-        todo[node] = done[node] = true;
-        for (int v : g[node]) {
-            if (!acyclic(g, todo, done, v)) {
-                return false;
-            }
-        }
-        todo[node] = false;
         return true;
     }
 };
+

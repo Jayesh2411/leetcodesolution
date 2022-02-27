@@ -1,15 +1,14 @@
 class Solution {
-private:
-    int row[9][256], col[9][256], cube[3][3][256];
+    unordered_set<string> cache;
     bool sudoku(vector<vector<char>> &board, int i, int j, char val)
     {
-        if(row[i][val])
+        if(cache.find("row"+to_string(i)+"_"+val)!=cache.end())
             return false;
-        if(col[j][val])
+        if(cache.find("col"+to_string(j)+"_"+val)!=cache.end())
             return false;
         int rowCube = i/3;
         int colCube = j/3;
-        if(cube[rowCube][colCube][val])
+        if(cache.find(to_string(rowCube)+"_"+to_string(colCube)+"_"+val)!=cache.end())
             return false;
         return true;
         
@@ -29,14 +28,14 @@ private:
                 board[i][j] = val;
                 int rowCube = i/3;
                 int colCube = j/3;
-                row[i][val] = 1;
-                col[j][val] = 1;
-                cube[rowCube][colCube][val] = 1;
+                cache.insert("row"+to_string(i) + "_" + val);
+                cache.insert("col"+to_string(j) + "_" + val);
+                cache.insert(to_string(rowCube)+"_"+to_string(colCube)+"_"+val);
                 if(solveSudoku(board,i,j+1))
                     return true;
-                row[i][val] = 0;
-                col[j][val] = 0;
-                cube[rowCube][colCube][val] = 0;
+                cache.erase("row"+to_string(i) + "_" + val);
+                cache.erase("col"+to_string(j) + "_" + val);
+                cache.erase(to_string(rowCube)+"_"+to_string(colCube)+"_" + val);
                 board[i][j] = '.';
             }
         }
@@ -44,18 +43,17 @@ private:
     }
 public:
     void solveSudoku(vector<vector<char>>& board) {
-        for(int i = 0; i < 9; i++ )
+        for(int r = 0; r < 9; r++ )
         {
-            for(int j = 0; j < 9; j++ )
+            for(int c = 0; c < 9; c++ )
             {
-                if(board[i][j]!='.')
+                if(board[r][c]!='.')
                 {
-                    int val = board[i][j];
-                    int rowCube = i/3;
-                    int colCube = j/3;
-                    row[i][val] = 1;
-                    col[j][val] = 1;
-                    cube[rowCube][colCube][val] = 1;
+                    cache.insert("row"+to_string(r) + "_" + board[r][c]);
+                    cache.insert("col"+to_string(c) + "_" + board[r][c]);
+                    int rowCube = r/3;
+                    int colCube = c/3;
+                    cache.insert(to_string(rowCube)+"_"+to_string(colCube)+"_"+board[r][c]);
                 }
             }
         }

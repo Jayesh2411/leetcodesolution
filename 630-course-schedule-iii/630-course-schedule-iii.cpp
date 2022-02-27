@@ -1,6 +1,4 @@
-
 class Solution {
-
 public:
     int scheduleCourse(vector<vector<int>>& C) {
         sort(C.begin(), C.end(), [](auto &a, auto &b) {return a[1] < b[1];});

@@ -1,7 +1,7 @@
 class Solution {
 private:
     int row[9][256], col[9][256], cube[3][3][256];
-    bool sudoku(vector<vector<char>> board, int i, int j, char val)
+    bool sudoku(vector<vector<char>> &board, int i, int j, char val)
     {
         if(row[i][val])
             return false;

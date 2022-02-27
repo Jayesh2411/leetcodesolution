@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maxProfit(int l, vector<int>& prices) {
-            if (prices.size() == 0) return 0;
+            if (prices.size() < 2) return 0;
             int dp[l+1];
             int minK[l+1];
             for(int i = 0; i <= l; i++)

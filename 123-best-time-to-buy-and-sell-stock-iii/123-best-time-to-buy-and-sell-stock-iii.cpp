@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int buyFirst = 100001 , buySecond = 100001;
+        int buyFirst = 1000000 , buySecond = 1000000;
         int sellFirst = 0, sellSecond = 0;
         for(int i : prices)
         {

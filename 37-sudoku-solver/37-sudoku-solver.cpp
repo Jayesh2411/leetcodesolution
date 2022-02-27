@@ -1,7 +1,7 @@
 class Solution {
 private:
-    int row[9][256], col[9][256], cube[3][3][256];
-    bool sudoku(vector<vector<char>> &board, int i, int j, char val)
+    int row[9][10], col[9][10], cube[3][3][10];
+    bool sudoku(vector<vector<char>> &board, int i, int j, int val)
     {
         if(row[i][val])
             return false;
@@ -22,11 +22,12 @@ private:
             return solveSudoku(board,i+1,0);
         if(board[i][j]!='.')
             return solveSudoku(board,i,j+1);
-        for( char val = '1'; val <= '9'; val++ )
+        for( char v = '1'; v <= '9'; v++ )
         {
+            int val = v - 48;
             if(sudoku(board,i,j,val))
             {
-                board[i][j] = val;
+                board[i][j] = v;
                 int rowCube = i/3;
                 int colCube = j/3;
                 row[i][val] = 1;
@@ -50,7 +51,7 @@ public:
             {
                 if(board[i][j]!='.')
                 {
-                    int val = board[i][j];
+                    int val = board[i][j] - 48;
                     int rowCube = i/3;
                     int colCube = j/3;
                     row[i][val] = 1;

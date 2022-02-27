@@ -5,36 +5,31 @@ public:
             return false;
         if(s1.length()==0)
             return true;
-        map<char,int> m;
-        int i;
-        for(i=0;i<s1.length();i++)
-            m[s1[i]]++;
+        unordered_map<char,int> m;
+        for(char c : s1)
+            m[c]++;
         int first,last;
         first=0;
         last=0;
-        i=0;
-        while(i < s2.length()&&(first+s1.length()<=s2.length()))
+        while(last < s2.length())
         {
-            while(m[s2[i]]!=0 && i < s2.length())
+            while(m[s2[last]]!=0)
             {
-                if(first==last)
-                    first=i;
-                last=i+1;
+                
+                m[s2[last]]--;
+                ++last;
                 if(last-first==s1.length())
                    return true;
-                m[s2[i]]--;
-                ++i;
+                if(last == s2.length())
+                    return false;
             }
             while(s2[first]!=s2[last])
             {
                 m[s2[first]]++;
                 ++first;
             }
-            if(first!=last)
-                {
-                ++first;
-            ++last;}
-            ++i;
+            m[s2[first++]]--;
+            m[s2[last++]]++;
         }
         return false;
     }

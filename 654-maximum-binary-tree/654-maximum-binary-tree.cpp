@@ -10,7 +10,7 @@
  * };
  */
 class Solution {
-    TreeNode* construct(vector<int>& nums, int i, int j)
+    TreeNode* constructMaximumBinaryTree(vector<int>& nums, int i, int j)
     {
         if(i > j)
             return NULL;
@@ -21,12 +21,12 @@ class Solution {
                 mid = k;
         }
         TreeNode* root = new TreeNode( nums[mid] );
-        root->left = construct(nums,i,mid-1);
-        root->right = construct(nums,mid+1,j);
+        root->left = constructMaximumBinaryTree(nums,i,mid-1);
+        root->right = constructMaximumBinaryTree(nums,mid+1,j);
         return root;
     }
 public:
     TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
-        return construct(nums,0,nums.size()-1);
+        return constructMaximumBinaryTree(nums,0,nums.size()-1);
     }
 };

@@ -17,18 +17,17 @@ public:
         int sum = 0;
         while( l1 || l2 )
         {
-            int x = 0, y = 0;
+            sum = carry;
             if(l1)
             {
-                x = l1->val;
+                sum += l1->val;
                 l1 = l1->next;
             }
             if(l2)
             {
-                y = l2->val;
+                sum += l2->val;
                 l2 = l2->next;
             }
-            sum = x + y + carry;
             carry = sum/10;
             temp->next = new ListNode(sum%10);
             temp = temp->next;

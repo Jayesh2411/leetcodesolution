@@ -7,11 +7,7 @@ public:
         for(auto s : strs)
         {
             numOnes = numZeroes = 0;
-            for(char c : s)
-            {
-                if(c == '1')
-                    numOnes+=1;
-            }
+            numOnes = count(s.begin(),s.end(),'1');
             numZeroes = s.length() - numOnes;
             for(int i = m; i >= numOnes; i--)
             {

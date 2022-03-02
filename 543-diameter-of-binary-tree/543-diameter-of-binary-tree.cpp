@@ -10,21 +10,20 @@
  * };
  */
 class Solution {
-
-public:
-    int max_sum=INT_MIN;
-    int max_gain(TreeNode* root)
+    int findDiameter(TreeNode* root, int &res)
     {
-        if(!root)return 0;
-        int l=max_gain(root->left);
-        int r=max_gain(root->right);
-        int temp = max(root->val,root->val+max(l,r));
-        int new_price=max(root->val+l+r,temp);
-        max_sum=max(max_sum,new_price);
+        if(root == NULL)
+            return 0;
+        int l = findDiameter(root->left,res);
+        int r = findDiameter(root->right,res);
+        int temp = 1 + max(l,r);
+        res = max(res,1+l+r);
         return temp;
     }
-    int maxPathSum(TreeNode* root) {
-        max_gain(root);
-        return max_sum;
+public:
+    int diameterOfBinaryTree(TreeNode* root) {
+        int res = INT_MIN;
+        findDiameter(root,res);
+        return res-1;
     }
 };

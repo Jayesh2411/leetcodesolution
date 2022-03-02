@@ -1,23 +1,23 @@
-
 class Solution {
 public:
-    int findMaxForm(vector<string>& strs, int m, int n) {
-        vector < vector< int > > dp;
-        dp.resize( m+1,vector<int>(n+1,0));
+    int findMaxForm(vector<string>& strs, int n, int m) {
+        int dp[m+1][n+1];
+        memset(dp,0,sizeof(dp));
+        int numOnes, numZeroes;
         for(auto s : strs)
         {
-            int numOne = 0;
-            int numZero = 0;
+            numOnes = numZeroes = 0;
             for(char c : s)
-                if(c=='1')
-                    ++numOne;
-                else
-                    ++numZero;
-            for(int i = m; i >= numZero ; i--)
             {
-                for(int j = n; j >= numOne; j--)
+                if(c == '1')
+                    numOnes+=1;
+            }
+            numZeroes = s.length() - numOnes;
+            for(int i = m; i >= numOnes; i--)
+            {
+                for(int j = n; j >= numZeroes; j--)
                 {
-                        dp[i][j] = max( dp[i][j], dp[i - numZero][j - numOne] + 1);
+                    dp[i][j] = max(dp[i][j],dp[i-numOnes][j-numZeroes] + 1);
                 }
             }
         }

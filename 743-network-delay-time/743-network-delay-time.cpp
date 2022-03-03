@@ -5,7 +5,7 @@ public:
     int networkDelayTime(vector<vector<int>>& times, int n, int k) {
         vector<pii> g[n + 1];
         for (const auto& t : times) {
-            g[t[0]].emplace_back(t[1], t[2]);
+            g[t[0]].push_back({t[1], t[2]});
         }
         const int inf = 1e9;
         vector<int> dist(n + 1, inf);

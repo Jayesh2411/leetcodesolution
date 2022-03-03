@@ -3,21 +3,25 @@ typedef long long int lli;
 class Solution {
 public:
     int countVowelPermutation(int n) {
-        vector<vector<lli>> dp;
-        dp.resize(n+1,vector<lli>(5,0));
-        for(int i = 0; i < 5; i++)
-            dp[1][i] = 1;
-        for(int i = 1; i < n; i++)
+        lli a,e,i,o,u;
+        if( n == 1)
+            return 5;
+        a = e = i = o = u = 1;
+        lli cA, cE, cI, cO, cU;
+        for(int j = 1; j < n; j++)
         {
-            dp[i+1][0] = (dp[i][1] + dp[i][2] + dp[i][4])%MAX;
-            dp[i+1][1] = (dp[i][0] + dp[i][2])%MAX;
-            dp[i+1][2] = (dp[i][1] + dp[i][3])%MAX;
-            dp[i+1][3] = dp[i][2];
-            dp[i+1][4] = (dp[i][3] + dp[i][2])%MAX;
+            cA = (e + i + u)%MAX;
+            cE = (a + i)%MAX;
+            cI = (e + o)%MAX;
+            cO = i;
+            cU = (i + o)%MAX;
+            a = cA;
+            e = cE;
+            i = cI;
+            o = cO;
+            u = cU;
         }
-        lli ans = 0;
-        for(int i = 0; i < 5; i++)
-            ans = (ans+dp[n][i])%MAX;
+        lli ans = (cA + cE + cO + cI + cU)%MAX;
         return ans;
     }
 };

@@ -6,7 +6,8 @@ public:
         m = text2.length();
         if( n == 0 || m == 0)
             return 0;
-        vector<int> curr( m + 1, 0 );
+        int curr[m+1];
+        memset(curr,0,sizeof(curr));
         for( int i = 1; i <=n; i++ )
         {
             int prev = curr[0];

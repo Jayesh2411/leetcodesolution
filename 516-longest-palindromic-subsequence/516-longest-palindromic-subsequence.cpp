@@ -4,15 +4,13 @@ public:
         int sol = 0;
         int dp[s.length()+1];
         memset(dp,0,sizeof(dp));
-        string s1 = s;
-        reverse(s1.begin(),s1.end());
-        for(int i = 1; i <= s.length(); i++)
+        for(int i = s.length(); i > 0; i--)
         {
             int prev = 0;
             for(int j = 1; j <= s.length(); j++)
             {
                 int temp = dp[j];
-                if( s[i-1] == s1[j-1])
+                if( s[i-1] == s[j-1])
                 {
                     dp[j]=1+prev;
                     sol = max(sol,dp[j]);

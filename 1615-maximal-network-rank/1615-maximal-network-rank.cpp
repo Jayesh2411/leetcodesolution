@@ -1,9 +1,9 @@
 class Solution {
 public:
     int maximalNetworkRank(int n, vector<vector<int>>& roads) {
-        vector<vector<int>> graph;
+        int graph[n][n];
         vector<int> count(n,0);
-        graph.resize(n,vector<int>(n,0));
+        memset(graph,0,sizeof(graph));
         for( auto i : roads )
         {
             graph[i[0]][i[1]] = 1;

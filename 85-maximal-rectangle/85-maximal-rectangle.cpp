@@ -1,31 +1,60 @@
 class Solution {
+    vector<int> ngr(vector<int>& graph)
+    {
+        stack<int> index;
+        vector<int> result(graph.size(),0);
+        for(int i = graph.size() - 1; i >= 0; i--)
+        {
+            while(!index.empty() && graph[index.top()] >= graph[i] )
+                index.pop();
+            if(index.empty())
+                result[i] = graph.size()-1;
+            else
+                result[i] = index.top()-1;
+            index.push(i);
+        }
+        return result;
+    }
+    vector<int> ngl(vector<int>& graph)
+    {
+        stack<int> index;
+        vector<int> result(graph.size(),0);
+        for(int i = 0; i < graph.size(); i++)
+        {
+            while(!index.empty() && graph[index.top()] >= graph[i] )
+                index.pop();
+            if(index.empty())
+                result[i] = 0;
+            else
+                result[i] = index.top()+1;
+            index.push(i);
+        }
+        return result;
+    }
+    int maxArea(vector<int>& graph)
+    {
+        vector<int> NGR = ngr(graph);
+        vector<int> NGL = ngl(graph);
+        int ans = 0;
+        for(int i = 0; i < graph.size(); i++)
+            ans = max(ans,(NGR[i] - NGL[i]+1)*graph[i]);
+        return ans;
+    }
 public:
     int maximalRectangle(vector<vector<char>>& matrix) {
-        if(matrix.empty()) return 0;
-    const int m = matrix.size();
-    const int n = matrix[0].size();
-    int left[n], right[n], height[n];
-    fill_n(left,n,0); fill_n(right,n,n); fill_n(height,n,0);
-    int maxA = 0;
-    for(int i=0; i<m; i++) {
-        int cur_left=0, cur_right=n; 
-        for(int j=0; j<n; j++) { // compute height (can do this from either side)
-            if(matrix[i][j]=='1') height[j]++; 
-            else height[j]=0;
+        vector<int> barGraph(matrix[0].size(),0);
+        int ans = 0;
+        for(int i = 0; i < matrix.size(); i++)
+        {
+            for(int j = 0; j < matrix[0].size(); j++)
+            {
+                if(matrix[i][j] == '0')
+                    barGraph[j] = 0;
+                else
+                    barGraph[j]++;
+            }
+            ans = max(ans,maxArea(barGraph));
         }
-        for(int j=0; j<n; j++) { // compute left (from left to right)
-            if(matrix[i][j]=='1') left[j]=max(left[j],cur_left);
-            else {left[j]=0; cur_left=j+1;}
-        }
-        // compute right (from right to left)
-        for(int j=n-1; j>=0; j--) {
-            if(matrix[i][j]=='1') right[j]=min(right[j],cur_right);
-            else {right[j]=n; cur_right=j;}    
-        }
-        // compute the area of rectangle (can do this from either side)
-        for(int j=0; j<n; j++)
-            maxA = max(maxA,(right[j]-left[j])*height[j]);
-    }
-    return maxA;
+        return ans;
     }
 };

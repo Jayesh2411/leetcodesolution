@@ -8,6 +8,7 @@ struct Trie {
     }
 };
 class Solution {
+    int MAX_LEN;
     void insert(Trie* &root, string word)
     {
         Trie *node = root;
@@ -33,6 +34,8 @@ class Solution {
             result.push_back(word);
             child->endOfWord = false;
         }
+        if(word.length() > MAX_LEN)
+            return;
         board[i][j] = '-';
         dfs(board,child,word,i+1,j,result);
         dfs(board,child,word,i-1,j,result);
@@ -44,11 +47,20 @@ public:
     vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
         Trie* node = new Trie();
         vector<string> result;
+        MAX_LEN=0;
         for(auto word : words)
+        {
             insert(node,word);
+            MAX_LEN = max(MAX_LEN,int(word.length()));
+        }
+        
         for(int i = 0; i < board.size(); i++)
             for(int j = 0; j < board[0].size(); j++ )
-                dfs(board,node,"",i,j,result);
+            {
+                string word = "";
+                dfs(board,node,word,i,j,result);
+            }
+                
         return result;
     }
 };

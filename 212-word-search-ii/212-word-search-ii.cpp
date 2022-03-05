@@ -34,7 +34,7 @@ class Solution {
             result.push_back(word);
             child->endOfWord = false;
         }
-        if(word.length() > MAX_LEN)
+        if(word.length() >= MAX_LEN)
             return;
         board[i][j] = '-';
         dfs(board,child,word,i+1,j,result);

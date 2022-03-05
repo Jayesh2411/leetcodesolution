@@ -57,8 +57,7 @@ public:
         for(int i = 0; i < board.size(); i++)
             for(int j = 0; j < board[0].size(); j++ )
             {
-                string word = "";
-                dfs(board,node,word,i,j,result);
+                dfs(board,node,"",i,j,result);
             }
                 
         return result;

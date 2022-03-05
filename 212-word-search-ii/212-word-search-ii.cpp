@@ -8,7 +8,9 @@ struct Trie {
     }
 };
 class Solution {
+    private:
     int MAX_LEN;
+    vector<string> result;
     void insert(Trie* &root, string word)
     {
         Trie *node = root;
@@ -20,7 +22,7 @@ class Solution {
         }
         node->endOfWord = true;
     }
-    void dfs(vector<vector<char>> &board, Trie* &node, string word, int i, int j, vector<string> &result)
+    void dfs(vector<vector<char>> &board, Trie* &node, string word, int i, int j)
     {
         if(i < 0 || i >= board.size() || j < 0 || j >= board[0].size() || board[i][j] == '-')
             return;
@@ -37,16 +39,15 @@ class Solution {
         if(word.length() >= MAX_LEN)
             return;
         board[i][j] = '-';
-        dfs(board,child,word,i+1,j,result);
-        dfs(board,child,word,i-1,j,result);
-        dfs(board,child,word,i,j+1,result);
-        dfs(board,child,word,i,j-1,result);
+        dfs(board,child,word,i+1,j);
+        dfs(board,child,word,i-1,j);
+        dfs(board,child,word,i,j+1);
+        dfs(board,child,word,i,j-1);
         board[i][j] = ch;
     }
 public:
     vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
         Trie* node = new Trie();
-        vector<string> result;
         MAX_LEN=0;
         for(auto word : words)
         {
@@ -56,7 +57,7 @@ public:
         
         for(int i = 0; i < board.size(); i++)
             for(int j = 0; j < board[0].size(); j++)
-                dfs(board,node,"",i,j,result);
+                dfs(board,node,"",i,j);
                 
         return result;
     }

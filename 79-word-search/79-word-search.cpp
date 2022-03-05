@@ -1,23 +1,39 @@
+/*
+ * @lc app=leetcode id=79 lang=cpp
+ *
+ * [79] Word Search
+ */
+
+// @lc code=start
 class Solution {
-    public:
-bool exist(vector<vector<char>>& board, string word) {
-    for (unsigned int i = 0; i < board.size(); i++) 
-        for (unsigned int j = 0; j < board[0].size(); j++) 
-            if (dfs(board, i, j, word))
-                return true;
-    return false;
-}
-private:
-bool dfs(vector<vector<char>>& board, int i, int j, string& word) {
-    if (!word.size())
-        return true;
-    if (i<0 || i>=board.size() || j<0 || j>=board[0].size() || board[i][j] != word[0])  
+    string word;
+    bool dfs(vector<vector<char>> &board, int start, int i, int j)
+    {
+        if(start == word.length())
+            return true;
+        if(i < 0 || i >= board.size() || j < 0 || j >= board[0].size() || board[i][j]!=word[start])
+            return false;
+        board[i][j] = '-';
+        bool ans = dfs(board,start+1,i+1,j) || dfs(board,start+1,i-1,j) || dfs(board,start+1,i,j-1) || dfs(board,start+1,i,j+1);
+        board[i][j] = word[start];
+        return ans;
+    }
+public:
+    bool exist(vector<vector<char>>& board, string words) {
+        word = words;
+        for(int i = 0; i < board.size(); i++)
+        {
+            for(int j = 0; j < board[0].size(); j++ )
+            {
+                if(board[i][j] == words[0])
+                {
+                    if(dfs(board,0,i,j))
+                        return true;
+                }
+            }
+        }
         return false;
-    char c = board[i][j];
-    board[i][j] = '*';
-    string s = word.substr(1);
-    bool ret = dfs(board, i-1, j, s) || dfs(board, i+1, j, s) || dfs(board, i, j-1, s) || dfs(board, i, j+1, s);
-    board[i][j] = c;
-    return ret;
-}
+    }
 };
+// @lc code=end
+

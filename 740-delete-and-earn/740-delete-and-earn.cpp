@@ -2,10 +2,13 @@ class Solution {
 public:
     int deleteAndEarn(vector<int>& nums) {
         map<int,int> m;
+        int maxEl = 0;
         for(int i: nums)
+        {
             m[i]++;
+            maxEl = max(maxEl,i);
+        }
         int ans = 0, min1 = 0, min2 = 0, i = 1;
-        int maxEl = *max_element(nums.begin(),nums.end());
         while( i <= maxEl )
         {
             if(m[i] != 0)

@@ -17,9 +17,7 @@ public:
         for( int i = 0; i < n; i++ )
         {
             PalCount(s,i,i);
-            cout<<i<<" "<<i<<" "<<count<<endl;
             PalCount(s,i,i+1);
-            cout<<i<<" "<<i+1<<" "<<count<<endl;
         }
         return count; 
     }

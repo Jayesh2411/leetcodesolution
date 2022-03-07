@@ -4,12 +4,13 @@ class Solution {
     {
         priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
         vector<int> temp(graph.size(),INT_MAX);
+        int src, dist;
         pq.push({0,i});
         temp[i] = 0;
         while(!pq.empty())
         {
-            int src = pq.top().second;
-            int dist = pq.top().first;
+            src = pq.top().second;
+            dist = pq.top().first;
             pq.pop();
             if(dist > threshold)
                 break;

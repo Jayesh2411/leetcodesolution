@@ -1,40 +1,16 @@
 class Solution {
-    vector<vector<int>> memo;
-    bool isPalindrome(string s)
-    {
-        int i = 0, j = s.length() - 1;
-        while( i < j)
-        {
-            if(s[i] != s[j])
-                return false;
-            ++i;
-            --j;
-        }
-        return true;
-    }
-    int palpart(string &s, int i, int j)
-    {
-        if(i == j)
-            return 0;
-        if(memo[i][j] != -1)
-            return memo[i][j];
-        if(isPalindrome(s.substr(i,j-i+1)))
-            return memo[i][j] = 0;
-        int ans = 2000;
-        for(int k = i + 1; k <= j; k++)
-        {
-            if(isPalindrome(s.substr(i,k-i)))
-            {
-                memo[k][j] = palpart(s,k,j);
-                int temp = 1 + memo[k][j];
-                ans = min(temp,ans);
-            }
-        }
-        return memo[i][j] = ans;
-    }
 public:
     int minCut(string s) {
-        memo.resize(s.length(), vector<int> (s.length(), -1));
-        return palpart(s,0,s.length()-1);
+        int n = s.size();
+        vector<int> cut(n+1, 0);  // number of cuts for the first k characters
+        for (int i = 0; i <= n; i++) cut[i] = i-1;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; i-j >= 0 && i+j < n && s[i-j]==s[i+j] ; j++) // odd length palindrome
+                cut[i+j+1] = min(cut[i+j+1],1+cut[i-j]);
+
+            for (int j = 1; i-j+1 >= 0 && i+j < n && s[i-j+1] == s[i+j]; j++) // even length palindrome
+                cut[i+j+1] = min(cut[i+j+1],1+cut[i-j+1]);
+        }
+        return cut[n];
     }
 };

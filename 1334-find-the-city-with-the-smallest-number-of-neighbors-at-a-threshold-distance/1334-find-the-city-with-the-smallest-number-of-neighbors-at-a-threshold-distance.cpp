@@ -6,6 +6,7 @@ class Solution {
         vector<int> temp(graph.size(),INT_MAX);
         pq.push({0,i});
         temp[i] = 0;
+        int ctr = 0;
         while(!pq.empty())
         {
             int src = pq.top().second;
@@ -15,15 +16,13 @@ class Solution {
             {
                 if(temp[it.first] > dist + it.second)
                 {
+                    if(temp[it.first] > threshold && (dist + it.second) <= threshold)
+                        ++ctr;
                     temp[it.first] = dist + it.second;
                     pq.push({temp[it.first],it.first});
                 }
             }
         }
-        int ctr = 0;
-        for(int j = 0; j < graph.size(); j++)
-            if(temp[j] <= threshold)
-                ++ctr;
         if(ans.second > ctr || (ans.second == ctr && ans.first < i))
             ans = {i,ctr};
     }

@@ -1,6 +1,6 @@
 class Solution {
     pair<int,int> ans;
-    void dijkstra(vector<vector<pair<int,int>>> &graph, int i,int threshold)
+    void dijkstra(vector<vector<pair<int,int>>> &graph, int &i,int &threshold)
     {
         priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
         vector<int> temp(graph.size(),INT_MAX);

@@ -14,28 +14,28 @@ public:
         if(head == NULL || head->next == NULL)
             return head;
         ListNode* prev = head;
-        ListNode* curr = head->next;
+        head = head->next;
         ListNode* temp = new ListNode(0);
         ListNode* root = temp;
-        while(curr)
+        while(head)
         {
-            while(curr && prev->val == curr->val)
-                curr = curr->next;
-            if(curr == NULL)
+            while(head && prev->val == head->val)
+                head = head->next;
+            if(head == NULL)
                 break;
-            if(prev->next == curr)
+            if(prev->next == head)
             {
                 temp->next = prev;
                 temp = temp->next;
             }
-            if(curr->next == NULL)
+            if(head->next == NULL)
             {
-                temp->next = curr;
+                temp->next = head;
                 temp = temp->next;
                 break;
             }
-            prev = curr;
-            curr = curr->next;
+            prev = head;
+            head = head->next;
         }
         temp->next = NULL;
         return root->next;

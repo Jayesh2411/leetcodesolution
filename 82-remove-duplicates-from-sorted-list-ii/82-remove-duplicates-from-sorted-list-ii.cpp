@@ -21,19 +21,20 @@ public:
         {
             while(curr && prev->val == curr->val)
                 curr = curr->next;
+            if(curr == NULL)
+                break;
             if(prev->next == curr)
             {
                 temp->next = prev;
                 temp = temp->next;
             }
-            else if(curr == NULL)
-                break;
-            prev = curr;
             if(curr->next == NULL)
             {
                 temp->next = curr;
                 temp = temp->next;
+                break;
             }
+            prev = curr;
             curr = curr->next;
         }
         temp->next = NULL;

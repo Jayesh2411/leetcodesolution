@@ -28,15 +28,6 @@ public:
             }
             else if(curr == NULL)
                 break;
-            else
-            {
-                while(curr != prev)
-                {
-                    ListNode* del = prev;
-                    prev = prev->next;
-                    delete del;
-                }
-            }
             prev = curr;
             if(curr->next == NULL)
             {

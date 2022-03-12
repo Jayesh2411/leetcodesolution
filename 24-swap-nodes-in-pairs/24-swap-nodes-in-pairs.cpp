@@ -15,8 +15,19 @@ public:
            return head;
         ListNode* curr = head;
         ListNode* next = head->next;
-        curr->next = swapPairs(next->next);
-        next->next = curr;
-        return next;
+        head = head->next;
+        ListNode* answer = new ListNode(1);
+        while(curr && next)
+        {
+            curr->next = next->next;
+            next->next = curr;
+            answer->next = next;
+            answer = answer->next->next;
+            curr = curr->next;
+            if(curr)
+                next = curr->next;
+        }
+        return head;
     }
 };
+

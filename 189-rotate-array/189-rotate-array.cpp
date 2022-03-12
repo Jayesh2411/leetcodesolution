@@ -16,7 +16,7 @@ public:
                 swap(hold,nums[temp]);
                 ++count;
                 currK = temp;
-            }while(currK != i && count != n );
+            }while(currK != i);
             ++i;
         }
     }

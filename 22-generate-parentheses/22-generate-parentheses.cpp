@@ -1,6 +1,5 @@
 class Solution {
-    vector<string> result;
-    void paranthesize(int open, int close, string ans)
+    void paranthesize(int open, int close, string ans, vector<string> &result)
     {
         if(open == 0 && close == 0)
         {
@@ -9,12 +8,13 @@ class Solution {
         }
         if(open > close || (close == 0 && open != 0)|| close < 0 || open < 0)
             return;
-        paranthesize(open-1,close,ans+"(");
-        paranthesize(open,close-1,ans+")");
+        paranthesize(open-1,close,ans+"(", result);
+        paranthesize(open,close-1,ans+")",result);
     }
 public:
     vector<string> generateParenthesis(int n) {
-        paranthesize(n,n,"");
+        vector<string> result;
+        paranthesize(n,n,"",result);
         return result;
     }
 };

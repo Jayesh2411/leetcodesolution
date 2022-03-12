@@ -8,7 +8,8 @@ class Solution {
         }
         if(open > close || (close == 0 && open != 0)|| close < 0 || open < 0)
             return;
-        paranthesize(open-1,close,ans+"(", result);
+        if(open - 1 <= close)
+            paranthesize(open-1,close,ans+"(", result);
         paranthesize(open,close-1,ans+")",result);
     }
 public:

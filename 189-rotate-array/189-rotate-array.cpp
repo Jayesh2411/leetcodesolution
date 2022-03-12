@@ -6,13 +6,14 @@ public:
         int n = nums.size();
         int i = 0;
         int count = 0;
+        int hold,currK,temp;
         while(count != n)
         {
-            int hold = nums[i];
-            int currK = i;
+            hold = nums[i];
+            currK = i;
             do
             {
-                int temp = (currK+k)%n;
+                temp = (currK+k)%n;
                 swap(hold,nums[temp]);
                 ++count;
                 currK = temp;

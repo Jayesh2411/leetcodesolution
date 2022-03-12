@@ -5,7 +5,8 @@ public:
             return;
         unordered_set<int> s;
         int n = nums.size();
-        for(int i = 0; s.size() != n ; i++)
+        int i = 0;
+        while(s.size() != n)
         {
             int tempVal = nums[i];
             int currK = (i+k)%n;
@@ -17,6 +18,7 @@ public:
                 tempVal = hold;
                 currK = (currK+k)%n;
             }
+            ++i;
         }
     }
 };

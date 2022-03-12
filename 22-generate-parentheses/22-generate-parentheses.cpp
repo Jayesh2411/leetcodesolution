@@ -6,11 +6,10 @@ class Solution {
             result.push_back(ans);
             return;
         }
-        if(open > close || (close == 0 && open != 0)|| close < 0 || open < 0)
-            return;
-        if(open - 1 <= close)
+        if(open - 1 <= close && open - 1 >= 0)
             paranthesize(open-1,close,ans+"(", result);
-        paranthesize(open,close-1,ans+")",result);
+        if(close - 1 >= open && close - 1 >= 0)
+            paranthesize(open,close-1,ans+")",result);
     }
 public:
     vector<string> generateParenthesis(int n) {

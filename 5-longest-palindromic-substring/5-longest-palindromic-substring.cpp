@@ -29,7 +29,7 @@ public:
                 if( s[i-1] == s[j-1])
                 {
                     dp[j] = 1 + prev;
-                    if(dp[j] > sol.first && isPalindrome(s.substr(j-dp[j],dp[j])))
+                    if(dp[j] > sol.first && (abs(j-i) == dp[j]-1))
                         sol = {dp[j],j-dp[j]};
                 }
                 else

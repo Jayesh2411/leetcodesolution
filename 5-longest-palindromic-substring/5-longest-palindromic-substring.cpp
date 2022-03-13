@@ -17,7 +17,7 @@ public:
         if(s.length() < 2)
             return s;
         pair<int,int> sol = {0,0};
-        int dp[s.length()+1];
+        int dp[s.length()];
         memset(dp,0,sizeof(dp));
         int n = s.length();
         for(int i = n; i > 0; i--)
@@ -25,15 +25,15 @@ public:
             int prev = 0;
             for(int j = 1; j <= n; j++)
             {
-               int temp = dp[j];
+               int temp = dp[j-1];
                 if( s[i-1] == s[j-1])
                 {
-                    dp[j] = 1 + prev;
-                    if(dp[j] > sol.first && (abs(j-i) == dp[j]-1))
-                        sol = {dp[j],j-dp[j]};
+                    dp[j-1] = 1 + prev;
+                    if(dp[j-1] > sol.first && (abs(j-i) == dp[j-1]-1))
+                        sol = {dp[j-1],j-dp[j-1]};
                 }
                 else
-                    dp[j] = 0;
+                    dp[j-1] = 0;
                 prev = temp;
             }
         }

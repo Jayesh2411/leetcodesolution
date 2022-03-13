@@ -17,8 +17,7 @@ public:
         if(s.length() < 2)
             return s;
         pair<int,int> sol = {0,0};
-        int dp[s.length()];
-        memset(dp,0,sizeof(dp));
+        vector<int> dp(s.length(),0);
         int n = s.length();
         for(int i = n; i > 0; i--)
         {

@@ -2,8 +2,6 @@ class Solution {
 public:
     string minRemoveToMakeValid(string s) {
         queue<int> open;
-        int closed = 0;
-        string result = "";
         for(int i = 0; i < s.length(); i++)
         {
             if(s[i] == '(')

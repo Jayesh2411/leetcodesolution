@@ -18,7 +18,9 @@ public:
         {
             while(temp->next && temp->val == temp->next->val)
             {
+                ListNode* next = temp->next;
                 temp->next = temp->next->next;
+                delete next;
             }
             temp = temp->next;
         }

@@ -16,14 +16,10 @@ public:
         ListNode* temp = head;
         while(temp)
         {
-            ListNode* next = temp->next;
-            while(next && temp->val == next->val)
+            while(temp->next && temp->val == temp->next->val)
             {
-                ListNode* tbd = next;
-                next=next->next;
-                delete tbd;
+                temp->next = temp->next->next;
             }
-            temp->next = next;
             temp = temp->next;
         }
         return head;

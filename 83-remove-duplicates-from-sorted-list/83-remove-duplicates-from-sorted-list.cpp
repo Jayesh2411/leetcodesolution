@@ -18,7 +18,11 @@ public:
         {
             ListNode* next = temp->next;
             while(next && temp->val == next->val)
+            {
+                ListNode* tbd = next;
                 next=next->next;
+                delete tbd;
+            }
             temp->next = next;
             temp = temp->next;
         }

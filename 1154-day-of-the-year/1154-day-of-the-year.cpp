@@ -4,7 +4,7 @@ public:
         int y,m,d;
         y = stoi(s.substr(0,4));
         m = stoi(s.substr(5,2));
-        d = stoi(s.substr(8,2));
+        d = stoi(s.substr(8));
         if(y%100 == 0)
             y = y/100;
         int leap = y%4==0?1:0;

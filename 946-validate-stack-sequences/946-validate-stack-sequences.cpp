@@ -12,8 +12,6 @@ public:
                 ++j;
             }
         }
-        if(!s.empty())
-            return false;
-        return true;
+        return s.empty();
     }
 };

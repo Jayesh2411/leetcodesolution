@@ -16,7 +16,7 @@ class Solution {
         }
         return count;
     }
-    
+    private:
     void swap(vector<int> &row, vector<int> &pos, int x, int y) {
         int temp = row[x];
         pos[temp] = y;

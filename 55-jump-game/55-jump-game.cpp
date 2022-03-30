@@ -6,17 +6,14 @@ public:
         int maxL = nums[0];
         for(int i = 1; i < nums.size(); i++)
         {
-            if(i <= maxL)
-            {
-                if(nums[i]+i > maxL)
-                {
-                    maxL = nums[i] + i;
-                    if(maxL >= nums.size() - 1)
-                        return true;
-                }
-            }
-            else
+            if(i > maxL)
                 return false;
+            if(nums[i]+i > maxL)
+            {
+                maxL = nums[i] + i;
+                if(maxL >= nums.size() - 1)
+                    return true;
+            }
         }
         return false;
     }

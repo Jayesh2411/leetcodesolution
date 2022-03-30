@@ -1,28 +1,24 @@
 class Solution {
 public:
     int deleteAndEarn(vector<int>& nums) {
-        unordered_map<int,int> m;
-        int maxEl = 0;
-        int minEl = INT_MAX;
+        map<int,int> m;
         for(int i: nums)
         {
             m[i]++;
-            maxEl = max(maxEl,i);
-            minEl = min(minEl,i);
         }
-        int ans = 0, min1 = 0, min2 = 0;
-        while( minEl <= maxEl )
+        int min1 = 0, min2 = 0;
+        for(auto i : m)
         {
-            if(m[minEl] != 0)
+            int temp = min1;
+            if(m[i.first-1] != 0)
             {
-                ans = max(minEl*m[minEl]+min2,min1);
-                min2 = min1;
-                min1 = ans;
+                min1 = max(i.first*i.second+min2,min1);
             }
             else
-                min2 = min1;
-            ++minEl;
+                min1 += i.first*i.second;
+            min2 = temp;
         }
-        return ans;        
+        return min1;        
     }
 };
+

@@ -1,8 +1,7 @@
 class Solution {
 public:
     int getMaxLen(vector<int>& nums) {
-        int ans = 0, negSoFar = 0, firstNeg = -1;
-        int lastZero = -1;
+        int ans = 0, negSoFar = 0, firstNeg = -1, lastZero = -1;
         for(int i = 0; i < nums.size(); i++)
         {
             if(nums[i] == 0)

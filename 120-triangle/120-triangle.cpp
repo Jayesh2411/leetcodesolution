@@ -7,7 +7,7 @@ public:
         for(int i = 1; i < triangle.size(); i++)
         {
             int temp = triangle[i-1].size();
-            for(int j = 0; j < triangle[i].size(); j++)
+            for(int j = 0; j <= i; j++)
             {
                 triangle[i][j] += min(triangle[i-1][max(j-1,0)],triangle[i-1][min(j,temp-1)]);
                 if(i == triangle.size()-1)

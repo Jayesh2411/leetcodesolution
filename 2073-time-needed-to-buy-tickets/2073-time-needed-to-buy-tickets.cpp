@@ -4,11 +4,10 @@ public:
         int ans = 0, curr = 0;
         while(tickets[k] != 0)
         {
-            if(tickets[curr] > 0)
-            {
-                tickets[curr]--;
-                ++ans;
-            }            
+            while(tickets[curr] <= 0)
+                curr = (curr+1)%tickets.size();
+            tickets[curr]--;
+            ++ans;
             curr = (curr+1)%tickets.size();
         }
         return ans;

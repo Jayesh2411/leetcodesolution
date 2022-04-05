@@ -24,10 +24,10 @@ public:
         queue<Node*> q;
         q.push(root);
         q.push(NULL);
+        int level = 1;
         while(q.size() > 1)
         {
-            int level = q.size();
-            for(int i = 1; i < level; i++)
+            for(int i = 1; i <= level; i++)
             {
                 Node* temp = q.front();
                 q.pop();
@@ -40,6 +40,7 @@ public:
             }
             q.pop();
             q.push(NULL);
+            level*=2;
         }
         return root;
     }

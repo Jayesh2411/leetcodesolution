@@ -23,23 +23,20 @@ public:
             return NULL;
         queue<Node*> q;
         q.push(root);
-        while(!q.empty())
+        q.push(NULL);
+        while(q.front())
         {
             int level = q.size();
-            for(int i = 1; i <= level; i++)
+            for(int i = 1; i < level; i++)
             {
                 Node* temp = q.front();
                 q.pop();
-                if(temp->left)
-                {
-                    q.push(temp->left);
-                    q.push(temp->right);
-                }
-                if(i == level)
-                    temp->next = NULL;
-                else
-                    temp->next = q.front();
+                q.push(temp->left);
+                q.push(temp->right);
+                temp->next = q.front();
             }
+            q.pop();
+            q.push(NULL);
         }
         return root;
     }

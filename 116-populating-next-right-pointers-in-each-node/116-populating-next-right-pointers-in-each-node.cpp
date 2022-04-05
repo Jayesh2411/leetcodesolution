@@ -24,15 +24,18 @@ public:
         queue<Node*> q;
         q.push(root);
         q.push(NULL);
-        while(q.front())
+        while(q.size() > 1)
         {
             int level = q.size();
             for(int i = 1; i < level; i++)
             {
                 Node* temp = q.front();
                 q.pop();
-                q.push(temp->left);
-                q.push(temp->right);
+                if(temp->left)
+                {
+                    q.push(temp->left);
+                    q.push(temp->right);
+                }
                 temp->next = q.front();
             }
             q.pop();

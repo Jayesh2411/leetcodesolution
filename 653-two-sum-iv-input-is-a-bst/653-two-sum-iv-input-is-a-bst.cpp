@@ -11,12 +11,16 @@
  */
 class Solution {
     unordered_set<int> s;
+    bool found = false;
 public:
     bool findTarget(TreeNode* root, int k) {
         if(root == NULL)
             return false;
-        if(s.find(k-root->val)!=s.end())
-            return true;
+        if(found || s.find(k-root->val)!=s.end())
+        {
+            found = true;
+            return found;
+        }
         s.insert(root->val);
         return findTarget(root->right,k) || findTarget(root->left,k);
     }

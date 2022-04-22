@@ -1,40 +1,26 @@
 class MyHashMap {
     ArrayList<Integer> indices;
-    ArrayList<Node> map;
+    
     public MyHashMap() {
-        this.map = new ArrayList<>();
         this.indices = new ArrayList<>();
+        for (int i = 0;i<=1000001;i++) {
+            indices.add(i,null);
+        }
     }
     
     public void put(int key, int value) {
-        for(int i=0;i<indices.size();i++) {
-            if(indices.get(i) == key) {
-                Node node =  map.get(i);
-                node.val = value;
-                return;
-            }
-        }
-        indices.add(key);
-        map.add(new Node(key,value));
+             indices.set(key,value); 
     }
     
     public int get(int key) {
-        for(int i=0;i<indices.size();i++) {
-            if(indices.get(i) == key) {
-                Node node =  map.get(i);
-                return node.val;
-            }
+        if( indices.get(key) == null) {
+            return -1;
         }
-        return -1;
+        return indices.get(key);
     }
     
     public void remove(int key) {
-        for(int i=0;i<indices.size();i++) {
-            if(indices.get(i) == key) {
-                indices.remove(i);
-                map.remove(i);
-            }
-        }
+        indices.set(key,null);
     }
 }
 class Node {

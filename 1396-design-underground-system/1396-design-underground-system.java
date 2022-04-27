@@ -10,40 +10,35 @@ class UndergroundSystem {
     }
     
     public void checkIn(int id, String stationName, int t) {
-        HashMap <String, Integer> map = new HashMap<>();
+        HashMap<String, Integer> map = new HashMap<>();
         map.put(stationName, t);
         checkinMap.put(id, map);
     }
-    
+
     public void checkOut(int id, String stationName, int t) {
-       
-        HashMap<String, Integer>  stMap= checkinMap.get(id);
-        Object[] startStationSet = stMap.keySet().toArray();
-        String startStation = (String)startStationSet[0];
+
+        HashMap<String, Integer> stMap = checkinMap.get(id);
+        String startStation = (String) stMap.keySet().toArray()[0];
+
         Integer startTime = stMap.get(startStation);
-        String sid = startStation+"|"+stationName;
-        sid = sid.toLowerCase();
-        Integer timeTaken = (t-startTime);
-        
-        
-        if(avgTimeMap.containsKey(sid)) {
-           avgTimeMap.get(sid).add(timeTaken);
+        String sid = (startStation + "|" + stationName).toLowerCase();
+
+        Integer timeTaken = (t - startTime);
+        if (avgTimeMap.containsKey(sid)) {
+            avgTimeMap.get(sid).add(timeTaken);
         } else {
-           ArrayList<Integer> list = new ArrayList();
-           list.add(timeTaken);
-           avgTimeMap.put(sid, list); 
+            ArrayList<Integer> list = new ArrayList();
+            list.add(timeTaken);
+            avgTimeMap.put(sid, list);
         }
-        
+
     }
-    
+
     public double getAverageTime(String startStation, String endStation) {
-        String id = startStation+"|"+endStation;
+        String id = (startStation + "|" + endStation).toLowerCase();
         Integer res = 0;
-        for (Integer i : avgTimeMap.get(id.toLowerCase()) ) {
-            res += i;
-        }
-        Double timeTaken = Double.valueOf(res/Double.valueOf(avgTimeMap.get(id.toLowerCase()).size()));
-        return timeTaken;
+        res = avgTimeMap.get(id).stream().reduce(0, Integer::sum);
+        return res / Double.valueOf(avgTimeMap.get(id).size());
     }
 }
 

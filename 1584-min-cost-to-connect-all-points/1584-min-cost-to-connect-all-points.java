@@ -4,29 +4,32 @@ class Solution {
         int mstCost = 0;
         int edgesUsed = 0;
         HashSet<Integer> inMST = new HashSet<>();
-        PriorityQueue<Pair<Integer, Integer>> minHeap = new PriorityQueue<>((a, b) -> (a.getKey() - b.getKey()));
-        
-        
-        minHeap.add(new Pair(0,0));
+       
+        int minDist[] = new int[n];
+        minDist[0] = 0;
+        for (int i = 1;i<n;i++) {
+            minDist[i] = Integer.MAX_VALUE;
+        }
         
         while(edgesUsed < n) {
-            Pair<Integer,Integer> topElement = minHeap.poll();
-            
-            int weight = topElement.getKey();
-            int currNode = topElement.getValue();
-            
-            if (inMST.contains(currNode)) {
-                continue;
-            }            
+            int currNode = -1;
+            int currMinEdge = Integer.MAX_VALUE;
+            for (int i = 0;i<n;i++) {
+                if (!inMST.contains(i) && currMinEdge > minDist[i]) {
+                    currMinEdge = minDist[i];
+                    currNode = i;
+                    
+                }
+            }  
             inMST.add(currNode);
-            
-            mstCost += weight;
+            mstCost += currMinEdge;
             edgesUsed++;
             
             for(int nextNode = 0 ;nextNode<n;nextNode++) {
-                if(!inMST.contains(nextNode)) {
-                    int nextWt = Math.abs(points[currNode][0]-points[nextNode][0])+Math.abs(points[currNode][1]-points[nextNode][1]);
-                    minHeap.add(new Pair(nextWt, nextNode));
+                int nextWt = Math.abs(points[currNode][0]-points[nextNode][0])+Math.abs(points[currNode][1]-points[nextNode][1]);
+                if(!inMST.contains(nextNode) && minDist[nextNode] > nextWt) {
+                    
+                    minDist[nextNode] = nextWt;
                 }
             }
         }

@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/short-encoding-of-words/">820. Short Encoding of Words</a></h2><h3>Medium</h3><hr><div><p>A <strong>valid encoding</strong> of an array of <code>words</code> is any reference string <code>s</code> and array of indices <code>indices</code> such that:</p>
+<h2><a href="https://leetcode.com/problems/short-encoding-of-words/solution/">820. Short Encoding of Words</a></h2><h3>Medium</h3><hr><div><p>A <strong>valid encoding</strong> of an array of <code>words</code> is any reference string <code>s</code> and array of indices <code>indices</code> such that:</p>
 
 <ul>
 	<li><code>words.length == indices.length</code></li>
